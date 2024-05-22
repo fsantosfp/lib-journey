@@ -1,0 +1,27 @@
+{
+    "canal_distribuicao": 4535,
+    "id_jornada": "a1d2f3",
+    "id_matriz": "xyz",
+    "matriz":{
+        "fields":[
+            {
+                "codigo_fonte_confirmacao_completude": 11,
+                "codigo_metodo_confirmacao_completude": 11,
+                "field_code": 105,
+                "field_name": "nome_completo",
+                "is_critico": "false",
+                "is_valida_completude": true,
+                "nivel_completude": 100
+            },
+            {
+                "codigo_fonte_confirmacao_completude": 11,
+                "codigo_metodo_confirmacao_completude": 11,
+                "field_code": 105,
+                "field_name": "nome_fantasia",
+                "is_critico": "false",
+                "is_valida_completude": true,
+                "nivel_completude": 100
+            }
+    ]},
+    "nome_jornada_consumidor":"CB7-D1002 - Onboarding de Abertura"
+}
