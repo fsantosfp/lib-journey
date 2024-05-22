@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Arquivo SQL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            min-width: 600;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .setup {
+            display: flex;
+            justify-content: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            padding: 8px;
+            box-sizing: border-box;
+            margin-right: 10px;
+        }
+        .form-inline {
+            display: flex;
+            align-items: center;
+        }
+        .form-inline label {
+            margin-right: 10px;
+        }
+        .form-inline input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .form-column{
+            display: flex;
+            flex-direction: column;
+        }
+        .nested-inputs {
+            display: none;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .nested-inputs input {
+            flex: 1;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        #journey_data input{
+            width: 100%;
+        }
+        /* #journey_form input {
+            bottom: 13px;
+            position: relative;
+        } */
+        .border_bottom {
+            margin-bottom: 20px;
+            border-bottom: solid #ccc 1px;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Gerador de Arquivo SQL</h2>
+        <div class="setup border_bottom">
+            <fieldset>
+                <legend>Select:</legend>
+                <div>
+                    <input type="radio" id="nova_jornada" name="teste" value="nova_jornada" checked>
+                    <label for="nova_jornada">Nova Jornada</label>
+                </div>
+                <div>
+                    <input type="radio" id="use_jornada" name="teste" value="use_jornada">
+                    <label for="use_jornada">Reaproveitar Jornada</label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Tipo Pessoa:</legend>
+                <div>
+                    <input type="radio" id="pf" name="tipo_pessoa" value="pf">
+                    <label for="pf">PF</label>
+                </div>
+                <div>
+                    <input type="radio" id="pj" name="tipo_pessoa" value="pj">
+                    <label for="pf">PJ</label>
+                </div>
+            </fieldset>
+        </div>
+        <div id="reaproveitar_jornada" class="hidden border_bottom">
+            <form id="journey_form" class="form-container">
+                <p><label for="w3review">Insira uma jornada valida</label></p>
+                <textarea id="jornada" name="jornada" rows="10" cols="100" placeholder="A jornada precisa estar no formato JSON"></textarea>
+                <input type="submit" value="Submit" class="btn">
+            </form>
+        </div>
+
+        <form id="sqlForm" class="form-container">
+            <button type="submit" class="btn">Gerar Arquivo SQL</button>
+            <br>
+            <br>
+            <div class="form-group form-column">
+                <fieldset id="journey_data">
+                    <legend>Dados de jornada:</legend>
+                    <label for="id_jornada">Id Jornada</label>
+                    <input type="text" id="id_jornada" placeholder="Id da Jornada">
+                    <label for="id_matriz">Id Matriz</label>
+                    <input type="text" id="id_matriz" placeholder="id da matriz de completude">
+                    <label for="nome_jornada_consumidor">Nome Jornada</label>
+                    <input type="text" id="nome_jornada_consumidor" placeholder="&#60;sigla_app&#62; - &#60;sn&#62;">
+                </fieldset>
+                <fieldset id="fields">
+                    <legend>campos:</legend>
+                </fieldset>
+            </div>
+        </form>
+    </div>
+
+    <script src="jornada.js"></script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Arquivo SQL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-inline {
+            display: flex;
+            align-items: center;
+        }
+        .form-inline label {
+            margin-right: 10px;
+        }
+        .form-inline input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .nested-inputs {
+            display: none;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .nested-inputs input {
+            flex: 1;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Gerador de Arquivo SQL</h2>
+        <form id="sqlForm">
+            <!-- Nome Completo -->
+            <div class="form-group form-inline">
+                <input type="checkbox" id="nomeCompletoCheckbox">
+                <label for="nomeCompletoCheckbox">Nome Completo</label>
+            </div>
+            <div class="nested-inputs" id="nomeCompletoInputs">
+                <div>
+                    <label for="nomeCompleto">Nome Completo:</label>
+                    <input type="text" id="nomeCompleto" disabled>
+                </div>
+                <div>
+                    <label for="nomeCompletoNivelCompletude">Nível de Completude</label>
+                    <input type="text" id="nomeCompletoNivelCompletude" disabled>
+                </div>
+                <div>
+                    <label for="nomeCompletoMetodoConfirmacao">Método de Confirmação</label>
+                    <input type="text" id="nomeCompletoMetodoConfirmacao" disabled>
+                </div>
+                <div>
+                    <label for="nomeCompletoFonteConfirmacao">Fonte de Confirmação</label>
+                    <input type="text" id="nomeCompletoFonteConfirmacao" disabled>
+                </div>
+            </div>
+            
+            <!-- Documento Originação -->
+            <div class="form-group form-inline">
+                <input type="checkbox" id="documentoOriginacaoCheckbox">
+                <label for="documentoOriginacaoCheckbox">Documento Originação</label>
+            </div>
+            <div class="nested-inputs" id="documentoOriginacaoInputs">
+                <div>
+                    <label for="documentoOriginacao">Documento Originação:</label>
+                    <input type="text" id="documentoOriginacao" disabled>
+                </div>
+                <div>
+                    <label for="documentoOriginacaoNivelCompletude">Nível de Completude</label>
+                    <input type="text" id="documentoOriginacaoNivelCompletude" disabled>
+                </div>
+                <div>
+                    <label for="documentoOriginacaoMetodoConfirmacao">Método de Confirmação</label>
+                    <input type="text" id="documentoOriginacaoMetodoConfirmacao" disabled>
+                </div>
+                <div>
+                    <label for="documentoOriginacaoFonteConfirmacao">Fonte de Confirmação</label>
+                    <input type="text" id="documentoOriginacaoFonteConfirmacao" disabled>
+                </div>
+            </div>
+
+            <!-- Tipo Pessoa -->
+            <div class="form-group form-inline">
+                <input type="checkbox" id="tipoPessoaCheckbox">
+                <label for="tipoPessoaCheckbox">Tipo Pessoa</label>
+            </div>
+            <div class="nested-inputs" id="tipoPessoaInputs">
+                <div>
+                    <label for="tipoPessoa">Tipo Pessoa:</label>
+                    <input type="text" id="tipoPessoa" disabled>
+                </div>
+                <div>
+                    <label for="tipoPessoaNivelCompletude">Nível de Completude</label>
+                    <input type="text" id="tipoPessoaNivelCompletude" disabled>
+                </div>
+                <div>
+                    <label for="tipoPessoaMetodoConfirmacao">Método de Confirmação</label>
+                    <input type="text" id="tipoPessoaMetodoConfirmacao" disabled>
+                </div>
+                <div>
+                    <label for="tipoPessoaFonteConfirmacao">Fonte de Confirmação</label>
+                    <input type="text" id="tipoPessoaFonteConfirmacao" disabled>
+                </div>
+            </div>
+
+            <!-- ID Cliente -->
+            <div class="form-group form-inline">
+                <input type="checkbox" id="idClienteCheckbox">
+                <label for="idClienteCheckbox">ID Cliente</label>
+            </div>
+            <div class="nested-inputs" id="idClienteInputs">
+                <div>
+                    <label for="idCliente">ID Cliente:</label>
+                    <input type="text" id="idCliente" disabled>
+                </div>
+                <div>
+                    <label for="idClienteNivelCompletude">Nível de Completude</label>
+                    <input type="text" id="idClienteNivelCompletude" disabled>
+                </div>
+                <div>
+                    <label for="idClienteMetodoConfirmacao">Método de Confirmação</label>
+                    <input type="text" id="idClienteMetodoConfirmacao" disabled>
+                </div>
+                <div>
+                    <label for="idClienteFonteConfirmacao">Fonte de Confirmação</label>
+                    <input type="text" id="idClienteFonteConfirmacao" disabled>
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Gerar Arquivo SQL</button>
+        </form>
+    </div>
+
+    <script>
+        // Função para gerenciar o comportamento dos checkboxes
+        function manageCheckbox(checkboxId, inputGroupId) {
+            document.getElementById(checkboxId).addEventListener('change', function() {
+                const inputGroup = document.getElementById(inputGroupId);
+                const inputs = inputGroup.querySelectorAll('input');
+                if (this.checked) {
+                    inputGroup.style.display = 'flex';
+                    inputs.forEach(input => {
+                        input.disabled = false;
+                    });
+                } else {
+                    inputGroup.style.display = 'none';
+                    inputs.forEach(input => {
+                        input.disabled = true;
+                        input.value = ''; // Limpa o conteúdo dos inputs
+                    });
+                }
+            });
+        }
+
+        // Gerenciar todos os checkboxes e seus inputs condicionais
+        manageCheckbox('nomeCompletoCheckbox', 'nomeCompletoInputs');
+        manageCheckbox('documentoOriginacaoCheckbox', 'documentoOriginacaoInputs');
+        manageCheckbox('tipoPessoaCheckbox', 'tipoPessoaInputs');
+        manageCheckbox('idClienteCheckbox', 'idClienteInputs');
+
+        document.getElementById('sqlForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Captura os valores dos inputs
+            const nomeCompleto = document.getElementById('nomeCompleto').value;
+            const documentoOriginacao = document.getElementById('documentoOriginacao').value;
+            const tipoPessoa = document.getElementById('tipoPessoa').value;
+            const idCliente = document.getElementById('idCliente').value;
+
+            let sqlColumns = [];
+            let sqlValues = [];
+
+            if (document.getElementById('nomeCompletoCheckbox').checked) {
+                sqlColumns.push('nome_completo');
+                sqlValues.push(`'${nomeCompleto}'`);
+                sqlColumns.push('nome_completo_nivel_completude');
+                sqlValues.push(`'${document.getElementById('nomeCompletoNivelCompletude').value}'`);
+                sqlColumns.push('nome_completo_metodo_confirmacao');
+                sqlValues.push(`'${document.getElementById('nomeCompletoMetodoConfirmacao').value}'`);
+                sqlColumns.push('nome_completo_fonte_confirmacao');
+                sqlValues.push(`'${document.getElementById('nomeCompletoFonteConfirmacao').value}'`);
+            }
+
+            if (document.getElementById('documentoOriginacaoCheckbox').checked) {
+                sqlColumns.push('documento_originacao');
+                sqlValues.push(`'${documentoOriginacao}'`);
+                sqlColumns.push('documento_originacao_nivel_completude');
+                sqlValues.push(`'${document.getElementById('documentoOriginacaoNivelCompletude').value}'`);
+                sqlColumns.push('documento_originacao_metodo_confirmacao');
+                sqlValues.push(`'${document.getElementById('documentoOriginacaoMetodoConfirmacao').value}'`);
+                sqlColumns.push('documento_originacao_fonte_confirmacao');
+                sqlValues.push(`'${document.getElementById('documentoOriginacaoFonteConfirmacao').value}'`);
+            }
+
+            if (document.getElementById('tipoPessoaCheckbox').checked) {
+                sqlColumns.push('tipo_pessoa');
+                sqlValues.push(`'${tipoPessoa}'`);
+                sqlColumns.push('tipo_pessoa_nivel_completude');
+                sqlValues.push(`'${document.getElementById('tipoPessoaNivelCompletude').value}'`);
+                sqlColumns.push('tipo_pessoa_metodo_confirmacao');
+                sqlValues.push(`'${document.getElementById('tipoPessoaMetodoConfirmacao').value}'`);
+                sqlColumns.push('tipo_pessoa_fonte_confirmacao');
+                sqlValues.push(`'${document.getElementById('tipoPessoaFonteConfirmacao').value}'`);
+            }
+
+            if (document.getElementById('idClienteCheckbox').checked) {
+                sqlColumns.push('id_cliente');
+                sqlValues.push(`'${idCliente}'`);
+                sqlColumns.push('id_cliente_nivel_completude');
+                sqlValues.push(`'${document.getElementById('idClienteNivelCompletude').value}'`);
+                sqlColumns.push('id_cliente_metodo_confirmacao');
+                sqlValues.push(`'${document.getElementById('idClienteMetodoConfirmacao').value}'`);
+                sqlColumns.push('id_cliente_fonte_confirmacao');
+                sqlValues.push(`'${document.getElementById('idClienteFonteConfirmacao').value}'`);
+            }
+
+            // Cria o comando SQL
+            const sql = `INSERT INTO tabela (${sqlColumns.join(', ')}) VALUES (${sqlValues.join(', ')});`;
+
+            // Cria um Blob com o conteúdo SQL
+            const blob = new Blob([sql], { type: 'text/sql' });
+
+            // Cria um link para download
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `tabela.sql`;
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            a.click();
+
+            // Remove o link após o download
+            document.body.removeChild(a);
+        });
+    </script>
+</body>
+</html>
